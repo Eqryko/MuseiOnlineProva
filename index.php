@@ -1,4 +1,7 @@
 <?php
+
+echo $_SERVER['PHP_SELF'];
+
 session_start();
 
 // Connessione al database

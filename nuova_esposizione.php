@@ -6,14 +6,14 @@ if($conn->connect_error){
     die("Connessione fallita: {$conn->connect_error}");
 }
 
-$codice = $_GET['codice'] ?? '';
-$titolo = $_GET['titolo'] ?? '';
-$tariffa = $_GET['tariffa'] ?? '';
-$dataInizio = $_GET['dataInizio'] ?? '';
-$dataFine = $_GET['dataFine'] ?? '';
+$codice = $_POST['codice'] ?? '';
+$titolo = $_POST['titolo'] ?? '';
+$tariffa = $_POST['tariffa'] ?? '';
+$dataInizio = $_POST['dataInizio'] ?? '';
+$dataFine = $_POST['dataFine'] ?? '';
 $result1 = '';
 if (!empty($codice) && !empty($titolo) && !empty($tariffa) && !empty($dataInizio) && !empty($dataFine)) {
-    $sqlInsert = "INSERT INTO Visita (id_visita, titolo, tariffa, data_inizio, data_fine) VALUES ('$codice', '$titolo', $tariffa, '$dataInizio', '$dataFine')";
+    $sqlInsert = "INSERT INTO Visita (id_visita, titolo, tariffa, dataInizio, dataFine) VALUES ('$codice', '$titolo', $tariffa, '$dataInizio', '$dataFine')";
     if ($conn->query($sqlInsert) === TRUE) {
         $result1 = "Nuova esposizione creata con successo.";
     } else {
@@ -49,8 +49,6 @@ $conn->close();
             <input type="text" name="dataFine">
         </p>
         <p> <?= $result1 ?> </p>
-        <p> <?= $result2 ?> </p>
-        <p> <?= $ut ?> </p>
         <input type="submit" id="invio">
     </form>
 
